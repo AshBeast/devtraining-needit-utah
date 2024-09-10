@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <max_drift/>
+        <name>Generate </name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2024-09-10 18:18:17</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[(function generateRandomNeedItRecords() {
+    var numRecords = 1200; // Number of records to create
+    var userSysId = 'ENTER_USER_SYS_ID'; // Change to a valid sys_id from your User table (sys_user)
+    var locations = ['New York', 'London', 'Toronto', 'San Francisco', 'Sydney']; // Random locations
+    var shortDescriptions = ['Upgrade system', 'Implement new feature', 'Fix critical bug', 'Conduct training', 'Deploy new version'];
+
+    for (var i = 0; i < numRecords; i++) {
+        var needItRecord = new GlideRecord('x_58872_needit_needit'); // Table name for NeedIt
+        needItRecord.initialize();
+        
+        // Set random values for fields
+        needItRecord.u_requested_for = userSysId; // User who requested it
+        needItRecord.u_location = locations[Math.floor(Math.random() * locations.length)];
+        needItRecord.u_need_by = gs.daysAgo(-Math.floor(Math.random() * 30)); // Random future date within 30 days
+        needItRecord.short_description = shortDescriptions[Math.floor(Math.random() * shortDescriptions.length)];
+
+        // Insert the record
+        needItRecord.insert();
+    }
+
+    gs.info('Random NeedIt records created successfully!');
+})();
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-09-10 18:26:06</sys_created_on>
+        <sys_id>7b2256bd83ac1610a76696d6feaad329</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Generate </sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sysauto_script_7b2256bd83ac1610a76696d6feaad329</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-09-10 18:26:06</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
